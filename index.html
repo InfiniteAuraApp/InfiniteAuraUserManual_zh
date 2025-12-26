@@ -1,0 +1,1585 @@
+<!doctype html>
+<html lang="zh-Hans" dir="ltr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="light dark" />
+  <title>用户手册 — Infinite Aura</title>
+
+  <!-- App / Site Icon (Infinite Aura) -->
+  <link rel="apple-touch-icon" sizes="180x180" href="https://infiniteauraapp.github.io/InfiniteAuraPrivacyPoclicy_en/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="https://infiniteauraapp.github.io/InfiniteAuraPrivacyPoclicy_en/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="https://infiniteauraapp.github.io/InfiniteAuraPrivacyPoclicy_en/favicon-16x16.png">
+  <link rel="shortcut icon" href="https://infiniteauraapp.github.io/InfiniteAuraPrivacyPoclicy_en/favicon.ico">
+
+  <meta name="theme-color" content="#0b0c10">
+  <meta name="msapplication-TileColor" content="#0b0c10">
+
+  <style>
+    :root{
+      --bg: #0b0c10;
+      --surface: rgba(255,255,255,.05);
+      --surface2: rgba(255,255,255,.08);
+      --text: rgba(255,255,255,.93);
+      --muted: rgba(255,255,255,.72);
+      --border: rgba(255,255,255,.12);
+      --accent: #7c5cff;
+      --accent2: #25d366;
+      --shadow: 0 16px 40px rgba(0,0,0,.35);
+      --radius: 18px;
+      --max: 1120px;
+
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji","Segoe UI Emoji";
+
+      --pad: clamp(14px, 1.6vw, 22px);
+      --gap: clamp(12px, 1.4vw, 18px);
+    }
+
+    @media (prefers-color-scheme: light){
+      :root{
+        --bg: #f6f7fb;
+        --surface: rgba(0,0,0,.045);
+        --surface2: rgba(0,0,0,.065);
+        --text: rgba(0,0,0,.92);
+        --muted: rgba(0,0,0,.64);
+        --border: rgba(0,0,0,.12);
+        --shadow: 0 14px 34px rgba(0,0,0,.12);
+      }
+    }
+
+    *{ box-sizing:border-box; }
+    html,body{ height:100%; }
+    html{ scroll-behavior:smooth; }
+
+    body{
+      margin:0;
+      font-family: var(--sans);
+      color: var(--text);
+      line-height: 1.9;
+      background:
+        radial-gradient(900px 650px at 15% -10%, rgba(124,92,255,.30), transparent 60%),
+        radial-gradient(800px 600px at 100% 10%, rgba(37,211,102,.16), transparent 60%),
+        var(--bg);
+    }
+
+    a{ color: var(--accent); text-decoration:none; }
+    a:hover{ text-decoration:underline; }
+
+    :focus-visible{
+      outline: 3px solid rgba(124,92,255,.55);
+      outline-offset: 3px;
+      border-radius: 12px;
+    }
+
+    .skip{
+      position:absolute;
+      top:-60px;
+      left:16px;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      padding:10px 12px;
+      border-radius: 12px;
+      box-shadow: var(--shadow);
+      transition: top .2s ease;
+      z-index: 50;
+    }
+    .skip:focus{ top: 14px; }
+
+    .wrap{
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 24px 16px 70px;
+    }
+
+    header.hero{
+      border: 1px solid var(--border);
+      border-radius: calc(var(--radius) + 8px);
+      background: linear-gradient(135deg, rgba(124,92,255,.22), rgba(255,255,255,.03));
+      box-shadow: var(--shadow);
+      padding: calc(var(--pad) + 6px);
+      position: relative;
+      overflow: hidden;
+    }
+    header.hero::after{
+      content:"";
+      position:absolute;
+      inset:-60px -70px auto auto;
+      width: 240px;
+      height: 240px;
+      background: radial-gradient(circle at 30% 30%, rgba(255,255,255,.26), transparent 55%);
+      transform: rotate(18deg);
+      pointer-events:none;
+      filter: blur(.2px);
+    }
+
+    .brand{
+      display:flex;
+      gap: 14px;
+      align-items:flex-start;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+
+    .brand h1{
+      margin: 0;
+      font-size: clamp(22px, 2.6vw, 36px);
+      letter-spacing: .2px;
+      line-height: 1.25;
+    }
+
+    .meta{
+      display:flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      align-items:center;
+      margin-top: 10px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .pill{
+      display:inline-flex;
+      gap: 8px;
+      align-items:center;
+      padding: 7px 12px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      background: rgba(255,255,255,.03);
+      white-space: nowrap;
+      backdrop-filter: blur(8px);
+    }
+
+    .btnRow{
+      display:flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      align-items:center;
+      margin-top: 4px;
+    }
+
+    button{
+      font-family: inherit;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.04);
+      color: var(--text);
+      padding: 10px 12px;
+      border-radius: 14px;
+      cursor: pointer;
+      transition: transform .12s ease, background .12s ease, border-color .12s ease;
+      backdrop-filter: blur(8px);
+    }
+    button:hover{
+      background: rgba(255,255,255,.08);
+      border-color: rgba(255,255,255,.18);
+      transform: translateY(-1px);
+    }
+    button:active{ transform: translateY(0); }
+
+    .muted{ color: var(--muted); }
+    .small{ font-size: 13px; color: var(--muted); }
+
+    .grid{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: var(--gap);
+      margin-top: var(--gap);
+      align-items:start;
+    }
+    @media (min-width: 980px){
+      .grid{ grid-template-columns: 360px 1fr; }
+    }
+
+    .card{
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--surface);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      backdrop-filter: blur(10px);
+    }
+
+    .card-h{
+      padding: 14px 14px 12px;
+      border-bottom: 1px solid var(--border);
+      background: rgba(255,255,255,.02);
+      display:flex;
+      align-items:center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .card-h h2{
+      margin: 0;
+      font-size: 16px;
+      color: var(--text);
+      letter-spacing: .2px;
+    }
+
+    .card-b{ padding: 14px; }
+
+    .tocWrap{
+      position: relative;
+    }
+
+    @media (min-width: 980px){
+      .tocWrap{
+        position: sticky;
+        top: 18px;
+        max-height: calc(100vh - 36px);
+        overflow: auto;
+        scrollbar-width: thin;
+      }
+    }
+
+    .toc a{
+      display:flex;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 10px 12px;
+      border-radius: 14px;
+      color: var(--text);
+      border: 1px solid transparent;
+      transition: background .12s ease, border-color .12s ease, transform .12s ease;
+    }
+    .toc a:hover{
+      background: var(--surface2);
+      border-color: var(--border);
+      text-decoration: none;
+      transform: translateY(-1px);
+    }
+    .toc a.active{
+      background: rgba(124,92,255,.16);
+      border-color: rgba(124,92,255,.35);
+      box-shadow: 0 0 0 4px rgba(124,92,255,.10) inset;
+    }
+
+    main article{ padding: 16px; }
+
+    .prose{
+      max-width: 78ch;
+      margin-inline: auto;
+      padding-bottom: 4px;
+    }
+
+    details.policy-sec{
+      padding: 10px 0;
+      border-bottom: 1px dashed var(--border);
+      scroll-margin-top: 96px;
+    }
+    details.policy-sec:last-child{
+      border-bottom: none;
+      padding-bottom: 6px;
+    }
+
+    details.policy-sec > summary{
+      cursor: pointer;
+      list-style: none;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+
+      padding: 12px 12px;
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.03);
+      transition: background .12s ease, transform .12s ease, border-color .12s ease;
+    }
+
+    details.policy-sec > summary:hover{
+      background: var(--surface2);
+      border-color: rgba(255,255,255,.18);
+      transform: translateY(-1px);
+    }
+
+    details.policy-sec > summary::-webkit-details-marker{ display:none; }
+
+    details.policy-sec > summary .title{
+      font-size: clamp(18px, 1.5vw, 20px);
+      font-weight: 800;
+      line-height: 1.35;
+      letter-spacing: .15px;
+      margin: 0;
+    }
+
+    details.policy-sec > summary::after{
+      content: "▾";
+      font-size: 18px;
+      opacity: .8;
+      transform: translateY(-1px);
+      transition: transform .14s ease;
+    }
+
+    details.policy-sec[open] > summary{
+      background: rgba(124,92,255,.10);
+      border-color: rgba(124,92,255,.35);
+      box-shadow: 0 0 0 4px rgba(124,92,255,.10) inset;
+      transform: none;
+    }
+
+    details.policy-sec[open] > summary::after{
+      transform: rotate(180deg);
+    }
+
+    details.policy-sec .sec-body{
+      padding: 12px 4px 6px;
+    }
+
+    h3{
+      margin: 0 0 10px;
+      font-size: clamp(18px, 1.5vw, 20px);
+      line-height: 1.35;
+      letter-spacing: .15px;
+    }
+
+    p{ margin: 0 0 10px; }
+
+    ul,ol{
+      margin: 10px 0;
+      padding: 0 0 0 18px;
+    }
+    li{ margin: 8px 0; }
+
+    code{
+      font-family: var(--mono);
+      font-size: 0.92em;
+      padding: 2px 6px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.04);
+      direction: ltr;
+      unicode-bidi: plaintext;
+    }
+
+    .callout{
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.04);
+      border-radius: 16px;
+      padding: 12px 14px;
+      margin: 12px 0;
+    }
+    .callout strong{ display:block; margin-bottom: 6px; }
+
+    .badge{
+      display:inline-flex;
+      align-items:center;
+      gap: 8px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.03);
+      color: var(--muted);
+      font-size: 13px;
+      margin: 4px 6px 4px 0;
+      white-space: nowrap;
+    }
+    .badge i{
+      width: 10px; height: 10px; border-radius: 999px; display:inline-block;
+      background: var(--accent);
+      box-shadow: 0 0 0 4px rgba(124,92,255,.16);
+    }
+    .badge.ok i{ background: #25d366; box-shadow: 0 0 0 4px rgba(37,211,102,.15); }
+    .badge.warn i{ background: #ffb020; box-shadow: 0 0 0 4px rgba(255,176,32,.15); }
+    .badge.bad i{ background: #ff4d4f; box-shadow: 0 0 0 4px rgba(255,77,79,.15); }
+
+    .prose details:not(.policy-sec){
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      background: rgba(255,255,255,.03);
+      padding: 10px 12px;
+      margin: 12px 0;
+    }
+    .prose details[open]:not(.policy-sec){
+      background: rgba(255,255,255,.04);
+    }
+    .prose details:not(.policy-sec) > summary{
+      cursor:pointer;
+      font-weight: 700;
+      color: var(--text);
+      list-style: none;
+    }
+    .prose details:not(.policy-sec) > summary::-webkit-details-marker{ display:none; }
+
+    .hr{
+      height: 1px;
+      background: var(--border);
+      margin: 12px 0;
+    }
+
+    .footer{
+      margin-top: var(--gap);
+      padding: 16px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: rgba(255,255,255,.03);
+      color: var(--muted);
+      font-size: 14px;
+      backdrop-filter: blur(10px);
+    }
+
+    .tocMobile{ display:none; }
+    @media (max-width: 979px){
+      .tocMobile{ display:block; margin-top: var(--gap); }
+      .tocDesktop{ display:none; }
+      main article{ padding: 14px; }
+    }
+
+    @media print{
+      body{ background:#fff; color:#000; }
+      .card, header.hero, .footer{ box-shadow:none; }
+      a{ color:#000; text-decoration: underline; }
+      .btnRow, .skip{ display:none; }
+      .tocDesktop{ display:none; }
+      .tocMobile{ display:none; }
+      .prose{ max-width: none; }
+    }
+
+    @media (prefers-reduced-motion: reduce){
+      html{ scroll-behavior:auto; }
+      button, .toc a{ transition:none; }
+    }
+  </style>
+</head>
+
+<body>
+  <a class="skip" href="#content">跳到内容</a>
+
+  <div class="wrap">
+    <header class="hero">
+      <div class="brand">
+        <div>
+          <h1>用户手册 — Infinite Aura</h1>
+          <div class="meta">
+            <span class="pill">最后更新：<strong id="lastUpdated">2025年12月26日</strong></span>
+            <span class="pill">手册版本：<strong>v1</strong></span>
+          </div>
+        </div>
+
+        <div class="btnRow">
+          <button type="button" onclick="window.print()">打印 / 保存为 PDF</button>
+          <button type="button" onclick="toggleAll(true)">展开所有章节</button>
+          <button type="button" onclick="toggleAll(false)">收起所有章节</button>
+        </div>
+      </div>
+
+      <p class="muted" style="margin-top:12px">
+        本手册将<strong>逐步</strong>说明项目中<strong>Infinite Aura</strong>已实现的主要真实界面与功能
+        （注册 + 邮箱 OTP 验证、中心目录 + 预约、中心预约管理、公开中心页面发布/隐藏、绩效与归档）。
+      </p>
+    </header>
+
+    <!-- Mobile TOC -->
+    <details class="card tocMobile">
+      <summary class="card-h" style="user-select:none">
+        <h2 style="margin:0; font-size:16px">快速目录</h2>
+        <span class="small">点击展开</span>
+      </summary>
+      <div class="card-b toc" id="tocMobile">
+        <a href="#s1">1) 概述与角色</a>
+        <a href="#s2">2) 要求与权限</a>
+        <a href="#s3">3) 创建账户</a>
+        <a href="#s3a">3-A) 邮箱 OTP 验证</a>
+        <a href="#s3b">3-B) 中心验证文件</a>
+        <a href="#s4">4) 登录与重置密码</a>
+        <a href="#s5">5) 个体：添加与管理</a>
+        <a href="#s5a">5-A) 创建新会话</a>
+        <a href="#s5b">5-B) 会话结果</a>
+        <a href="#s5c">5-C) 监护人：中心目录与预约请求</a>
+        <a href="#s5d">5-D) 监护人：跟踪预约与回应改期</a>
+        <a href="#s6">6) 中心：中心管理与归档</a>
+        <a href="#s6a">6-A) 中心：公开展示（发布/隐藏）</a>
+        <a href="#s7">7) 中心：预约管理（同意/拒绝/改期）</a>
+        <a href="#s8">8) 中心：绩效页面</a>
+        <a href="#s9">9) 中心：归档</a>
+        <a href="#s10">10) 管理员：中心申请与审核</a>
+        <a href="#s11">11) 子管理员：按国家管理中心</a>
+        <a href="#s12">12) 通知</a>
+        <a href="#s13">13) 常见问题与支持</a>
+      </div>
+    </details>
+
+    <div class="grid">
+      <!-- Desktop TOC -->
+      <aside class="card tocDesktop">
+        <div class="card-h">
+          <h2>快速目录</h2>
+          <span class="small">点击跳转</span>
+        </div>
+        <div class="card-b toc tocWrap" id="toc">
+          <a href="#s1">1) 概述与角色</a>
+          <a href="#s2">2) 要求与权限</a>
+          <a href="#s3">3) 创建账户</a>
+          <a href="#s3a">3-A) 邮箱 OTP 验证</a>
+          <a href="#s3b">3-B) 中心验证文件</a>
+          <a href="#s4">4) 登录与重置密码</a>
+          <a href="#s5">5) 个体：添加与管理</a>
+          <a href="#s5a">5-A) 创建新会话</a>
+          <a href="#s5b">5-B) 会话结果</a>
+          <a href="#s5c">5-C) 监护人：中心目录与预约请求</a>
+          <a href="#s5d">5-D) 监护人：跟踪预约与回应改期</a>
+          <a href="#s6">6) 中心：中心管理与归档</a>
+          <a href="#s6a">6-A) 中心：公开展示（发布/隐藏）</a>
+          <a href="#s7">7) 中心：预约管理（同意/拒绝/改期）</a>
+          <a href="#s8">8) 中心：绩效页面</a>
+          <a href="#s9">9) 中心：归档</a>
+          <a href="#s10">10) 管理员：中心申请与审核</a>
+          <a href="#s11">11) 子管理员：按国家管理中心</a>
+          <a href="#s12">12) 通知</a>
+          <a href="#s13">13) 常见问题与支持</a>
+        </div>
+      </aside>
+
+      <!-- CONTENT -->
+      <main class="card" id="content">
+        <div class="card-h">
+          <h2>使用手册内容</h2>
+        </div>
+
+        <article>
+          <div class="prose">
+
+            <!-- ===================== MANUAL SECTIONS (Accordion) ===================== -->
+
+            <details class="policy-sec" id="s1">
+              <summary><span class="title">1) 概述与角色</span></summary>
+              <div class="sec-body">
+                <p>
+                  <strong>Infinite Aura</strong> 支持多方之间的账户管理与协作
+                  （监护人 / 中心 / 训练师 / 管理团队）。部分功能会根据<strong>账户角色</strong>显示或隐藏。
+                </p>
+
+                <p>
+                  <span class="badge"><i></i>监护人</span>
+                  <span class="badge"><i></i>中心</span>
+                  <span class="badge"><i></i>训练师</span>
+                  <span class="badge"><i></i>管理员 / 子管理员</span>
+                </p>
+
+                <div class="callout">
+                  <strong>重要提示</strong>
+                  <p class="muted" style="margin:0">
+                    <strong>中心</strong>账户使用内部审核流程：
+                    <code>verification status can be: pending review / approved / rejected</code>。
+                    若被拒绝，系统可能会根据管理员设置允许重新上传文件。
+                  </p>
+                </div>
+              </div>
+            </details>
+
+            <details class="policy-sec" id="s2">
+              <summary><span class="title">2) 要求与权限</span></summary>
+              <div class="sec-body">
+                <ol>
+                  <li>在 Android 设备上安装应用。</li>
+                  <li>选择应用语言（阿拉伯语 / 英语 / 西班牙语 / 法语 / 印地语 / 中文）。</li>
+                  <li>系统可能会根据你使用的功能请求权限：
+                    <ul>
+                      <li><strong>通知</strong>：接收预约更新等消息。</li>
+                      <li><strong>位置</strong>（中心）：创建公开页面时用于自动生成 Google 地图链接。</li>
+                    </ul>
+                  </li>
+                </ol>
+
+                <details>
+                  <summary>什么时候需要位置权限？</summary>
+                  <div class="hr"></div>
+                  <p class="muted">
+                    只有当你在公开中心页面点击<strong>使用当前位置</strong>来自动生成 Google 地图链接时才需要。
+                    你也可以手动粘贴地图链接，无需授予位置权限。
+                  </p>
+                </details>
+              </div>
+            </details>
+
+            <details class="policy-sec" id="s3">
+              <summary><span class="title">3) 创建账户</span></summary>
+              <div class="sec-body">
+                <p><span class="badge"><i></i>从注册界面开始</span></p>
+                <ol>
+                  <li>打开<strong>创建账户</strong>。</li>
+                  <li>填写基础信息：
+                    <ul>
+                      <li>姓名（监护人姓名或中心名称，取决于账户类型）。</li>
+                      <li>邮箱地址。</li>
+                      <li>密码。</li>
+                      <li>选择<strong>国家 / 国家区号</strong>（对中心账户很重要）。</li>
+                    </ul>
+                  </li>
+                  <li>选择账户类型：
+                    <ul>
+                      <li><strong>监护人</strong>。</li>
+                      <li><strong>中心</strong> — 需要上传验证文件（见 3-B）。</li>
+                    </ul>
+                  </li>
+                  <li>先完成<strong>邮箱 OTP 验证</strong>（见 3-A）。</li>
+                  <li>OTP 成功后，点击<strong>注册</strong>完成创建账户。</li>
+                </ol>
+
+                <div class="callout">
+                  <strong>说明</strong>
+                  <p class="muted" style="margin:0">
+                    若未完成 OTP 验证，应用会阻止完成注册（注册按钮会保持不可用，直到 OTP 成功）。
+                  </p>
+                </div>
+              </div>
+            </details>
+
+            <details class="policy-sec" id="s3a">
+              <summary><span class="title">3-A) 邮箱 OTP 验证（用于注册与登录）</span></summary>
+              <div class="sec-body">
+                <p>
+                  系统会向你的邮箱发送 6 位数字验证码（OTP）。
+                  同样的 OTP 机制也会在登录前使用（增强安全性）。
+                </p>
+
+                <ol>
+                  <li>确认邮箱填写正确。</li>
+                  <li>点击<strong>发送 OTP</strong>。</li>
+                  <li>在邮箱（收件箱 / 垃圾箱）查收 6 位验证码。</li>
+                  <li>会出现 OTP 弹窗（例如<strong>邮箱验证</strong>）：
+                    <ul>
+                      <li>输入 6 位验证码。</li>
+                      <li>点击<strong>验证</strong>。</li>
+                      <li>若错误/过期：可能提示“验证码无效或已过期”。</li>
+                    </ul>
+                  </li>
+                  <li>成功后：弹窗关闭，视为验证完成。</li>
+                </ol>
+
+                <details>
+                  <summary>常见 OTP 问题</summary>
+                  <div class="hr"></div>
+                  <ul>
+                    <li>收不到验证码：稍等 1 分钟，检查垃圾箱，并确认邮箱地址无误。</li>
+                    <li>验证码不生效：重新发送，并只使用<strong>最新</strong>的一次验证码。</li>
+                    <li>验证前不要关闭 OTP 弹窗，否则流程会被取消。</li>
+                  </ul>
+                </details>
+              </div>
+            </details>
+
+            <details class="policy-sec" id="s3b">
+              <summary><span class="title">3-B) 中心验证文件（仅中心账户）</span></summary>
+              <div class="sec-body">
+                <p>
+                  当你选择<strong>中心</strong>账户类型时，应用会要求上传能证明中心合法性的文件。
+                  管理员/子管理员会审核这些文件并决定通过或拒绝。
+                </p>
+
+                <ol>
+                  <li>在注册界面选择<strong>中心</strong>后，你会看到<strong>中心验证文件</strong>区域。</li>
+                  <li>点击上传，从设备中选择文件。</li>
+                  <li>应用中实现的限制：
+                    <ul>
+                      <li>通常支持：PDF / 图片（取决于文件选择器设置）。</li>
+                      <li>单个文件最大：<strong>50 MB</strong>。</li>
+                    </ul>
+                  </li>
+                  <li>选择后：会显示已选/已上传文件列表。</li>
+                  <li>OTP 成功后完成注册。</li>
+                </ol>
+
+                <div class="callout">
+                  <strong>警告</strong>
+                  <p class="muted" style="margin:0">
+                    若中心文件在注册过程中上传失败，系统可能会取消/删除新账户，
+                    以避免出现“没有文件的中心账户”。
+                  </p>
+                </div>
+              </div>
+            </details>
+
+            <details class="policy-sec" id="s4">
+              <summary><span class="title">4) 登录与重置密码</span></summary>
+              <div class="sec-body">
+                <p><span class="badge"><i></i>登录</span> <span class="badge warn"><i></i>登录前 OTP</span></p>
+
+                <ol>
+                  <li>打开<strong>登录</strong>。</li>
+                  <li>输入邮箱与密码。</li>
+                  <li>在真正登录前，会先进行<strong>邮箱 OTP</strong>：
+                    <ul>
+                      <li>系统发送验证码到你的邮箱。</li>
+                      <li>在弹窗中输入验证码并验证。</li>
+                    </ul>
+                  </li>
+                  <li>OTP 成功后，应用才会使用邮箱/密码完成登录。</li>
+                </ol>
+
+                <details>
+                  <summary>忘记密码？</summary>
+                  <div class="hr"></div>
+                  <ol>
+                    <li>在登录界面选择<strong>忘记密码</strong>。</li>
+                    <li>输入你的邮箱。</li>
+                    <li>系统会发送重置邮件。</li>
+                  </ol>
+                  <p class="muted">（密码重置由 Firebase Auth 处理。）</p>
+                </details>
+              </div>
+            </details>
+
+            <details class="policy-sec" id="s5">
+              <summary><span class="title">5) 个体：添加与管理</span></summary>
+              <div class="sec-body">
+                <p>
+                  <strong>个体（Individuals）</strong>是项目中管理对象的入口。
+                  在这里你可以<strong>新增个体</strong>、打开个人档案、查看会话记录，
+                  并且（中心账户）还可以<strong>安排下一次会话</strong>。
+                </p>
+
+                <p>
+                  <span class="badge"><i></i>个体列表</span>
+                  <span class="badge ok"><i></i>新增个体</span>
+                  <span class="badge warn"><i></i>下一次会话</span>
+                </p>
+
+                <h3>第一步：查看个体列表</h3>
+                <ol>
+                  <li>打开<strong>个体</strong>。</li>
+                  <li>你会看到已保存的个体列表。</li>
+                  <li>点击卡片进入<strong>个体详情</strong>。</li>
+                </ol>
+
+                <h3>第二步：新增个体</h3>
+                <ol>
+                  <li>在列表界面点击<strong>+</strong>或<strong>添加</strong>。</li>
+                  <li>填写基础信息：
+                    <ul>
+                      <li><strong>名</strong>与<strong>姓</strong>（必填）。</li>
+                      <li><strong>性别</strong>（男/女）。</li>
+                      <li><strong>出生日期</strong>（选择日期）。</li>
+                      <li><strong>备注</strong>（可选）。</li>
+                    </ul>
+                  </li>
+                  <li>（可选）添加头像：
+                    <ul>
+                      <li><strong>相机</strong>或<strong>相册</strong>。</li>
+                    </ul>
+                  </li>
+                  <li>（可选）监护人信息：
+                    <ul>
+                      <li><strong>监护人姓名</strong> / <strong>关系</strong> / <strong>监护人邮箱</strong></li>
+                    </ul>
+                  </li>
+                  <li>点击<strong>保存</strong>将个体添加到列表。</li>
+                </ol>
+
+                <div class="callout">
+                  <strong>与项目的关联</strong>
+                  <p class="muted" style="margin:0">
+                    若上传了个体头像，它会在个体档案页面显示。
+                    个体档案是所有会话与结果的基础数据来源。
+                  </p>
+                </div>
+
+                <h3>第三步：打开个体档案（详情 / 资料）</h3>
+                <ol>
+                  <li>点击个体卡片。</li>
+                  <li>在<strong>个体详情</strong>中可看到快捷操作，例如：
+                    <ul>
+                      <li><strong>开始新会话</strong>（见 5-A）。</li>
+                      <li><strong>状态回顾</strong>（若启用）。</li>
+                      <li><strong>打开档案</strong>（基础信息 + 头像）。</li>
+                    </ul>
+                  </li>
+                  <li>下方会显示<strong>会话列表</strong>；点击任意会话打开<strong>会话结果</strong>（见 5-B）。</li>
+                </ol>
+
+                <details>
+                  <summary>中心功能：安排下一次会话</summary>
+                  <div class="hr"></div>
+                  <p class="muted">
+                    当以<strong>中心</strong>身份登录时，你可以在个体列表中使用
+                    <strong>安排下一次会话</strong>：
+                  </p>
+                  <ol>
+                    <li>在个体卡片上点击<strong>安排下一次会话</strong>。</li>
+                    <li>选择<strong>日期</strong>，再选择<strong>时间</strong>。</li>
+                    <li>点击<strong>保存</strong>。</li>
+                  </ol>
+                  <p class="muted" style="margin:0">
+                    该时间会保存在个体记录中：<code>next_session_at</code>。
+                  </p>
+                </details>
+              </div>
+            </details>
+
+            <details class="policy-sec" id="s5a">
+              <summary><span class="title">5-A) 创建新会话</span></summary>
+              <div class="sec-body">
+                <p>
+                  <strong>新会话</strong>是项目的核心评估页面。
+                  一次会话包含<strong>照片</strong>、<strong>问卷答案</strong>，以及（可选）<strong>治疗</strong>与<strong>活动</strong>。
+                  保存时会计算分数，并跳转到结果页面。
+                </p>
+
+                <p>
+                  <span class="badge"><i></i>照片分析</span>
+                  <span class="badge"><i></i>问卷</span>
+                  <span class="badge bad"><i></i>活动</span>
+                  <span class="badge ok"><i></i>分析并保存</span>
+                </p>
+
+                <div class="callout">
+                  <strong>如何进入此页面？</strong>
+                  <p class="muted" style="margin:0">
+                    在<strong>个体详情</strong>中点击<strong>开始新会话</strong>。
+                  </p>
+                </div>
+
+                <h3>1) 添加会话照片（照片分析所需）</h3>
+                <ol>
+                  <li>点击<strong>拍摄照片</strong>。</li>
+                  <li>选择来源：<strong>相机</strong>或<strong>相册</strong>。</li>
+                  <li>选择后系统会对照片进行分析。</li>
+                </ol>
+
+                <details>
+                  <summary>如果未检测到人脸怎么办？</summary>
+                  <div class="hr"></div>
+                  <p class="muted">
+                    如果图片中没有清晰的人脸，可能会提示“未检测到人脸”。
+                    请更换照片或拍摄更清晰的图片。
+                  </p>
+                </details>
+
+                <h3>2) 填写问卷</h3>
+                <ol>
+                  <li>你会看到一系列问题。</li>
+                  <li>每个问题选择 1 到 5 的评分。</li>
+                  <li>尽量完成所有必填问题以获得更准确结果。</li>
+                </ol>
+
+                <h3>3)（可选）为会话添加治疗</h3>
+                <ol>
+                  <li>打开<strong>治疗</strong>。</li>
+                  <li>开启某个治疗（开关）以纳入本次会话。</li>
+                  <li>每个治疗可填写：
+                    <ul>
+                      <li><strong>目标</strong></li>
+                      <li><strong>备注</strong></li>
+                      <li><strong>有效性</strong>（1–5）</li>
+                    </ul>
+                  </li>
+                </ol>
+
+                <h3>4) 添加活动</h3>
+                <ol>
+                  <li>在<strong>活动</strong>中选择一个活动。</li>
+                  <li>设置：
+                    <ul>
+                      <li><strong>每日重复次数</strong></li>
+                      <li><strong>备注</strong>（可选）</li>
+                    </ul>
+                  </li>
+                  <li>点击<strong>添加活动</strong>将其加入列表。</li>
+                  <li>如需可移除某个活动。</li>
+                </ol>
+
+                <h3>5) 保存并查看结果</h3>
+                <ol>
+                  <li>点击<strong>分析</strong>。</li>
+                  <li>会话保存并生成分数：
+                    <ul>
+                      <li><strong>照片分数</strong></li>
+                      <li><strong>问卷分数</strong></li>
+                      <li><strong>活动分数</strong></li>
+                      <li><strong>综合分数</strong></li>
+                    </ul>
+                  </li>
+                  <li>保存后自动跳转到<strong>会话结果</strong>。</li>
+                </ol>
+
+                <div class="callout">
+                  <strong>安全提示（与项目相关）</strong>
+                  <p class="muted" style="margin:0">
+                    会话照片与问卷答案在项目中会对授权查看者进行加密/解密处理，
+                    因此打开结果时可能会有轻微的额外加载时间。
+                  </p>
+                </div>
+              </div>
+            </details>
+
+            <details class="policy-sec" id="s5b">
+              <summary><span class="title">5-B) 会话结果</span></summary>
+              <div class="sec-body">
+                <p>
+                  <strong>会话结果</strong>会展示保存后的会话详情：分数、（若有）会话照片、
+                  以及<strong>只读</strong>的问卷答案，同时还会展示该会话保存的治疗与活动。
+                </p>
+
+                <p>
+                  <span class="badge"><i></i>结果</span>
+                  <span class="badge"><i></i>会话照片</span>
+                  <span class="badge warn"><i></i>问卷答案</span>
+                  <span class="badge ok"><i></i>治疗 &amp; 活动</span>
+                </p>
+
+                <h3>如何打开结果？</h3>
+                <ol>
+                  <li>进入<strong>个体详情</strong>。</li>
+                  <li>在会话列表中点击某次会话。</li>
+                  <li>打开<strong>会话结果</strong>页面。</li>
+                </ol>
+
+                <h3>你会看到什么？</h3>
+                <ol>
+                  <li><strong>顶部</strong>：会话日期/时间与简要信息。</li>
+                  <li><strong>分数</strong>：照片 / 问卷 / 活动 / 综合（0–100）。</li>
+                  <li><strong>会话照片</strong>（如保存）：授权用户会在加载并解密后显示。</li>
+                  <li><strong>问卷答案</strong>：按题目展示（1–5），并带锁图标<strong>🔒</strong>（只读）。</li>
+                  <li><strong>治疗</strong>：目标、备注、有效性。</li>
+                  <li><strong>活动</strong>：每日次数与备注（若有）。</li>
+                </ol>
+
+                <details>
+                  <summary>为什么有时看不到会话照片？</summary>
+                  <div class="hr"></div>
+                  <ul>
+                    <li class="muted">该会话可能未保存照片。</li>
+                    <li class="muted">加载/解密可能需要一点时间。</li>
+                    <li class="muted">当前账户可能没有权限/密钥查看（取决于共享逻辑）。</li>
+                  </ul>
+                </details>
+
+                <div class="callout">
+                  <strong>结果与其它页面的关联</strong>
+                  <p class="muted" style="margin:0">
+                    会话结果通过<strong>个体详情</strong>（会话列表）直接打开，
+                    并可在启用时用于<strong>状态</strong>汇总与绩效统计分析。
+                  </p>
+                </div>
+              </div>
+            </details>
+
+            <details class="policy-sec" id="s5c">
+              <summary><span class="title">5-C) 监护人：中心目录与发送预约请求</span></summary>
+              <div class="sec-body">
+                <p><span class="badge"><i></i>中心目录</span> <span class="badge ok"><i></i>预约请求</span></p>
+
+                <ol>
+                  <li>打开<strong>中心目录</strong>。</li>
+                  <li>选择国家并使用搜索筛选结果。</li>
+                  <li>你会看到中心卡片（包含中心发布的信息：描述/地址/电话/链接/地图等）。</li>
+                  <li>点击<strong>联系</strong>查看选项：
+                    <ul>
+                      <li>拨打电话</li>
+                      <li>位置（若提供）</li>
+                      <li>打开 Google 地图</li>
+                    </ul>
+                  </li>
+                  <li>发送预约请求：在中心卡片上点击<strong>预约请求</strong>。</li>
+                  <li>填写请求：
+                    <ul>
+                      <li><strong>期望时间</strong>：先选日期再选时间。</li>
+                      <li><strong>时长</strong>：<code>30 / 45 / 60 / 90 / 120</code> 分钟。</li>
+                      <li><strong>留言</strong>：说明需求。</li>
+                    </ul>
+                  </li>
+                  <li>点击<strong>发送</strong>。状态变为<strong>待处理</strong>（Pending）。</li>
+                </ol>
+              </div>
+            </details>
+
+            <details class="policy-sec" id="s5d">
+              <summary><span class="title">5-D) 监护人：跟踪预约与回应改期</span></summary>
+              <div class="sec-body">
+                <p><span class="badge"><i></i>我的预约</span> <span class="badge warn"><i></i>需要处理</span></p>
+
+                <ol>
+                  <li>打开<strong>我的预约</strong>。</li>
+                  <li>主要标签页：
+                    <ul>
+                      <li><strong>待处理</strong>：等待中心回复。</li>
+                      <li><strong>需要处理</strong>：中心提出新时间，需要你确认。</li>
+                      <li><strong>已同意</strong>：已确认的预约。</li>
+                    </ul>
+                  </li>
+                  <li>在<strong>需要处理</strong>中：
+                    <ul>
+                      <li>查看中心提出的新时间与原时间（若显示）。</li>
+                      <li>点击<strong>接受</strong>确认新时间。</li>
+                      <li>或点击<strong>拒绝</strong>不同意改期。</li>
+                    </ul>
+                  </li>
+                </ol>
+
+                <details>
+                  <summary>状态快速说明</summary>
+                  <div class="hr"></div>
+                  <ul>
+                    <li><strong>pending</strong>：等待中心回复</li>
+                    <li><strong>approved</strong>：预约已确认</li>
+                    <li><strong>rejected</strong>：被拒绝（可能显示原因）</li>
+                    <li><strong>rescheduled</strong>：中心提出改期（需要你处理）</li>
+                  </ul>
+                </details>
+              </div>
+            </details>
+
+            <details class="policy-sec" id="s6">
+              <summary><span class="title">6) 中心：中心管理与归档</span></summary>
+              <div class="sec-body">
+                <p>
+                  <strong>中心管理</strong>用于从中心账户通过邮箱将项目内容分享给其他账户
+                  （监护人 / 训练师 / 等）。同时也包含进入<strong>归档</strong>的入口按钮。
+                </p>
+
+                <p>
+                  <span class="badge"><i></i>共享目标</span>
+                  <span class="badge"><i></i>个体</span>
+                  <span class="badge"><i></i>治疗</span>
+                  <span class="badge ok"><i></i>归档</span>
+                </p>
+
+                <div class="callout">
+                  <strong>如何进入此页面？</strong>
+                  <p class="muted" style="margin:0">
+                    以<strong>中心</strong>身份登录：打开<strong>个人资料</strong>，在 Center Tools 下选择
+                    <strong>中心管理</strong>。也可从首页快捷入口进入（若有）。
+                  </p>
+                </div>
+
+                <h3>1) 添加共享目标（邮箱）</h3>
+                <ol>
+                  <li>顶部找到<strong>与账户共享</strong>。</li>
+                  <li>输入目标<strong>邮箱</strong>。</li>
+                  <li>（可选）填写<strong>名称</strong>以便识别。</li>
+                  <li>选择<strong>用户类型</strong>：
+                    <code>Guardian / Trainer / Center / Other</code>
+                  </li>
+                  <li>点击<strong>保存</strong>，将其加入<strong>共享目标</strong>列表。</li>
+                </ol>
+
+                <details>
+                  <summary>关于“选择共享目标”的重要说明</summary>
+                  <div class="hr"></div>
+                  <p class="muted">
+                    当你点击<strong>共享目标</strong>列表中的某个目标，它会变成“已选中”。
+                    应用会用当前选中的目标来判断哪些项目<strong>已共享</strong>。
+                    该判断在<strong>只选择一个</strong>目标时最准确。
+                  </p>
+                </details>
+
+                <h3>2) 中心管理中的搜索与筛选</h3>
+                <ol>
+                  <li>使用<strong>搜索</strong>输入个体/治疗名称或邮箱/名称。</li>
+                  <li>选择搜索范围：
+                    <ul>
+                      <li><strong>个体</strong></li>
+                      <li><strong>治疗</strong></li>
+                      <li><strong>邮箱 / 账户</strong></li>
+                    </ul>
+                  </li>
+                  <li>清空搜索：点击搜索框的清除按钮。</li>
+                </ol>
+
+                <h3>3) 将个体/治疗共享给选中目标</h3>
+                <ol>
+                  <li>先在<strong>共享目标</strong>中选择一个目标。</li>
+                  <li>通过复选框选择要共享的个体。</li>
+                  <li>通过复选框选择要共享的治疗。</li>
+                  <li>点击<strong>共享所选</strong>。</li>
+                  <li>共享后：
+                    <ul>
+                      <li>已共享项可能会出现<strong>🔗</strong>图标。</li>
+                      <li>当只选一个目标时，可能会显示<strong>已共享</strong>提示。</li>
+                    </ul>
+                  </li>
+                </ol>
+
+                <div class="callout">
+                  <strong>共享/取消共享前的两个必要条件</strong>
+                  <ul class="muted" style="margin:0; padding-left:18px">
+                    <li>必须先选择一个<strong>共享目标</strong>。</li>
+                    <li>必须至少选择<strong>一个个体或一个治疗</strong>。</li>
+                  </ul>
+                </div>
+
+                <h3>4) 取消共享</h3>
+                <ol>
+                  <li>选择同一个目标（邮箱）。</li>
+                  <li>选择要取消共享的个体/治疗。</li>
+                  <li>点击<strong>取消共享所选</strong>。</li>
+                </ol>
+
+                <h3>5) 从中心管理进入归档</h3>
+                <p class="muted">
+                  在<strong>中心管理</strong>底部有一个<strong>归档</strong>按钮，用于打开中心的归档页面。
+                </p>
+
+                <ol>
+                  <li>点击<strong>归档</strong>（归档图标）。</li>
+                  <li>进入<strong>中心归档</strong>，显示已归档的个体/条目。</li>
+                  <li>点击归档条目查看详情与<strong>已归档会话</strong>。</li>
+                  <li>在归档会话中可能会看到<strong>恢复</strong>按钮，用于将会话恢复到原个体记录。</li>
+                  <li>你也可以在列表中点击删除按钮（🗑️）移除归档条目。</li>
+                </ol>
+
+                <details>
+                  <summary>归档中的“恢复会话”是什么意思？</summary>
+                  <div class="hr"></div>
+                  <p class="muted">
+                    “恢复”会把归档路径下的会话移动回原始个体记录
+                    （基于归档文档中保存的 ID），使其再次出现在个体会话列表中。
+                  </p>
+                </details>
+
+              </div>
+            </details>
+
+            <details class="policy-sec" id="s6a">
+              <summary><span class="title">6-A) 中心：公开展示页（在中心目录中发布/隐藏）</span></summary>
+              <div class="sec-body">
+                <p><span class="badge"><i></i>公开中心页面</span> <span class="badge ok"><i></i>已发布</span></p>
+
+                <ol>
+                  <li>打开<strong>公开中心页面</strong>。</li>
+                  <li>填写必填字段：
+                    <ul>
+                      <li><strong>工作日</strong>：选择工作日。</li>
+                      <li><strong>工作时间</strong>：例如 9:00 AM - 5:00 PM。</li>
+                      <li><strong>地址</strong>：城市/区域/街道等。</li>
+                      <li><strong>简介</strong>：简要描述服务内容。</li>
+                      <li><strong>电话</strong>：联系方式（建议国际格式）。</li>
+                      <li><strong>Google 地图链接</strong>：此处必填。</li>
+                      <li><strong>网站</strong>：可选（必须为有效 http/https）。</li>
+                    </ul>
+                  </li>
+                  <li>自动生成地图链接：
+                    <ul>
+                      <li>点击<strong>使用当前位置</strong>。</li>
+                      <li>如有请求，请允许位置权限。</li>
+                      <li>系统会基于坐标查询生成地图链接。</li>
+                    </ul>
+                  </li>
+                  <li>保存选项：
+                    <ul>
+                      <li><strong>发布</strong>：在目录中显示中心。</li>
+                      <li><strong>保存为草稿</strong>：保存但不发布（隐藏）。</li>
+                      <li><strong>隐藏</strong>：取消发布（从目录移除）。</li>
+                    </ul>
+                  </li>
+                </ol>
+
+                <div class="callout">
+                  <strong>说明</strong>
+                  <p class="muted" style="margin:0">
+                    页面顶部会显示发布状态（已发布 / 已隐藏），你也可以在发布状态下继续更新信息。
+                  </p>
+                </div>
+              </div>
+            </details>
+
+            <details class="policy-sec" id="s7">
+              <summary><span class="title">7) 中心：预约管理（同意 / 拒绝 / 改期）</span></summary>
+              <div class="sec-body">
+                <p><span class="badge"><i></i>预约管理</span> <span class="badge warn"><i></i>请求</span></p>
+
+                <ol>
+                  <li>打开<strong>预约管理</strong>。</li>
+                  <li>你会看到标签页：
+                    <ul>
+                      <li><strong>请求</strong>：新请求或等待监护人确认的改期请求。</li>
+                      <li><strong>日程</strong>：按预约时间排序的已同意预约。</li>
+                    </ul>
+                  </li>
+
+                  <li>在<strong>请求</strong>中：
+                    <ul>
+                      <li>打开某个请求查看详情（发起人/留言/期望时间/时长）。</li>
+                      <li>选择操作：
+                        <ul>
+                          <li><strong>同意</strong>：选择最终日期/时间 + 时长，然后确认。</li>
+                          <li><strong>改期</strong>：提出新时间（监护人需接受/拒绝）。</li>
+                          <li><strong>拒绝</strong>：填写原因并确认。</li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+
+                  <li>在<strong>日程</strong>中：
+                    <ul>
+                      <li>已确认预约会显示时间与时长。</li>
+                      <li>你也可以从日程中发起<strong>改期</strong>（提出新时间）。</li>
+                    </ul>
+                  </li>
+                </ol>
+
+                <details>
+                  <summary>点击“改期”会发生什么？</summary>
+                  <div class="hr"></div>
+                  <p class="muted">
+                    中心提出新时间后，预约状态会变为 <code>rescheduled</code>，
+                    监护人需要在<strong>需要处理</strong>标签页中接受或拒绝。
+                  </p>
+                </details>
+              </div>
+            </details>
+
+            <details class="policy-sec" id="s8">
+              <summary><span class="title">8) 中心：绩效页面</span></summary>
+              <div class="sec-body">
+                <p><span class="badge"><i></i>绩效</span> <span class="badge"><i></i>分析</span></p>
+
+                <ol>
+                  <li>打开<strong>中心绩效</strong>。</li>
+                  <li>你会看到摘要卡片，例如：
+                    <ul>
+                      <li>中心绩效分数（0–100）。</li>
+                      <li>个体总数。</li>
+                      <li>会话总数（以及最近 30/90 天会话数）。</li>
+                      <li>7 天内即将到来的会话。</li>
+                      <li>无会话的个体，或没有下一次会话的个体。</li>
+                    </ul>
+                  </li>
+                  <li>切换<strong>时间筛选</strong>（全部 / 最近 30 天 / 最近 90 天）以查看数据子集。</li>
+                </ol>
+              </div>
+            </details>
+
+            <details class="policy-sec" id="s9">
+              <summary><span class="title">9) 中心：归档</span></summary>
+              <div class="sec-body">
+                <p><span class="badge"><i></i>归档</span> <span class="badge warn"><i></i>已归档个体</span></p>
+                <p class="muted">
+                  你可以通过<strong>中心管理</strong>底部的归档按钮直接进入<strong>归档</strong>。
+                </p>
+
+                <ol>
+                  <li>打开<strong>归档</strong>。</li>
+                  <li>你会看到已归档个体列表（若有）。</li>
+                  <li>每个条目通常包含：
+                    <ul>
+                      <li>个体名称（若归档时保存）。</li>
+                      <li>归档来源（若有姓名/邮箱）。</li>
+                      <li>归档日期。</li>
+                    </ul>
+                  </li>
+                  <li>操作：
+                    <ul>
+                      <li>点击条目查看该个体的已归档会话。</li>
+                      <li>删除（🗑️）从列表移除该归档文档。</li>
+                    </ul>
+                  </li>
+                </ol>
+
+                <details>
+                  <summary>从归档恢复会话</summary>
+                  <div class="hr"></div>
+                  <p class="muted">
+                    项目包含将归档会话恢复到原始个体记录的逻辑
+                    （具体会依据存储/加密实现复制会话数据与答案）。
+                  </p>
+                </details>
+              </div>
+            </details>
+
+            <details class="policy-sec" id="s10">
+              <summary><span class="title">10) 管理员：中心申请与审核</span></summary>
+              <div class="sec-body">
+                <p>
+                  <strong>管理员</strong>账户负责审核<strong>新的中心注册</strong>，
+                  并控制中心账户状态（通过 / 拒绝 / 冻结 / 请求重新上传文件），
+                  以确保目录中已发布的中心可信。
+                </p>
+
+                <p>
+                  <span class="badge"><i></i>管理员面板</span>
+                  <span class="badge warn"><i></i>审核</span>
+                  <span class="badge ok"><i></i>通过 / 冻结</span>
+                  <span class="badge bad"><i></i>拒绝</span>
+                </p>
+
+                <div class="callout">
+                  <strong>如何进入此页面？</strong>
+                  <p class="muted" style="margin:0">
+                    以<strong>管理员</strong>身份登录：进入管理后台，打开<strong>中心管理</strong>。
+                  </p>
+                </div>
+
+                <h3>1) 项目中的中心状态</h3>
+                <ul>
+                  <li><code>verification_status</code>：
+                    <ul>
+                      <li><strong>pending</strong>：新中心等待审核</li>
+                      <li><strong>approved</strong>：已通过，可发布并接收预约</li>
+                      <li><strong>rejected</strong>：已拒绝（可能允许重新上传）</li>
+                    </ul>
+                  </li>
+                  <li><code>account_status</code>：
+                    <ul>
+                      <li><strong>active</strong>：账户正常</li>
+                      <li><strong>frozen</strong>：被冻结，访问受限，直到解冻</li>
+                    </ul>
+                  </li>
+                </ul>
+
+                <h3>2) 审核新中心</h3>
+                <ol>
+                  <li>打开<strong>待处理</strong>筛选/标签。</li>
+                  <li>点击中心卡片进入详情。</li>
+                  <li>审核：
+                    <ul>
+                      <li>中心名称、邮箱、国家</li>
+                      <li>已上传的验证文件</li>
+                    </ul>
+                  </li>
+                </ol>
+
+                <div class="callout">
+                  <strong>管理员主要操作</strong>
+                  <ul class="muted" style="margin:0; padding-left:18px">
+                    <li><strong>通过</strong>：将审核状态设置为 <strong>approved</strong>。</li>
+                    <li><strong>拒绝</strong>：设置为 <strong>rejected</strong> 并可存储原因。</li>
+                    <li><strong>请求重新上传</strong>：要求中心上传更新后的验证文件。</li>
+                  </ul>
+                </div>
+
+                <h3>3) 冻结 / 解冻中心</h3>
+                <ol>
+                  <li>在中心卡片/详情中点击<strong>冻结</strong>。</li>
+                  <li><code>account_status</code> 变为 <strong>frozen</strong>。</li>
+                  <li>恢复访问：点击<strong>解冻</strong>使其回到 <strong>active</strong>。</li>
+                </ol>
+
+                <details>
+                  <summary>什么时候应冻结而不是拒绝？</summary>
+                  <div class="hr"></div>
+                  <ul>
+                    <li class="muted"><strong>拒绝</strong>：通常用于初次审核时文件缺失/无效。</li>
+                    <li class="muted"><strong>冻结</strong>：中心已通过后出现问题，需要临时限制。</li>
+                  </ul>
+                </details>
+
+                <h3>4) 管理员决定如何影响用户</h3>
+                <ul>
+                  <li class="muted">通过的中心可发布展示页并接收预约。</li>
+                  <li class="muted">被拒绝的中心可能会看到拒绝页面与重新上传指引（若启用）。</li>
+                  <li class="muted">被冻结的中心可能会被重定向到冻结页面，并在解冻前无法执行关键操作。</li>
+                </ul>
+              </div>
+            </details>
+
+            <details class="policy-sec" id="s11">
+              <summary><span class="title">11) 子管理员：按国家/地区管理中心</span></summary>
+              <div class="sec-body">
+                <p>
+                  <strong>子管理员</strong>与管理员目的类似（审核中心并执行管理操作），
+                  但权限被限制在<strong>特定国家/地区</strong>。子管理员只能查看与管理其所属国家/地区内的中心。
+                </p>
+
+                <p>
+                  <span class="badge"><i></i>子管理员</span>
+                  <span class="badge"><i></i>国家范围</span>
+                  <span class="badge ok"><i></i>通过 / 冻结</span>
+                  <span class="badge warn"><i></i>受限权限</span>
+                </p>
+
+                <div class="callout">
+                  <strong>权限原则</strong>
+                  <p class="muted" style="margin:0">
+                    子管理员的国家/地区信息会存储在子管理员账户中。
+                    系统会据此只展示并允许管理同一国家/地区的中心。
+                  </p>
+                </div>
+
+                <h3>1) 子管理员可以做什么？</h3>
+                <ul>
+                  <li>查看其国家/地区内的中心（待处理 / 已通过 / 已拒绝 / 已冻结，按筛选查看）。</li>
+                  <li>打开中心详情并审核验证文件。</li>
+                  <li>执行：
+                    <ul>
+                      <li><strong>通过</strong></li>
+                      <li><strong>拒绝并填写原因</strong></li>
+                      <li><strong>冻结 / 解冻</strong></li>
+                      <li><strong>请求重新上传文件</strong></li>
+                    </ul>
+                  </li>
+                </ul>
+
+                <h3>2) 子管理员不能做什么？</h3>
+                <ul>
+                  <li class="muted">管理其国家/地区之外的中心。</li>
+                  <li class="muted">分配管理员角色或修改其他子管理员权限（仅管理员可做）。</li>
+                </ul>
+
+                <h3>3) 审核中心步骤（子管理员流程）</h3>
+                <ol>
+                  <li>以<strong>子管理员</strong>身份打开中心管理页面。</li>
+                  <li>使用<strong>待处理</strong>筛选查看本国的新中心请求。</li>
+                  <li>打开中心并审核文件。</li>
+                  <li>选择操作：
+                    <ul>
+                      <li>文件有效则<strong>通过</strong>。</li>
+                      <li>缺失/无效则<strong>拒绝</strong>并写明原因。</li>
+                      <li>仅需补充材料则<strong>请求重新上传</strong>。</li>
+                    </ul>
+                  </li>
+                  <li>如需临时限制，可使用<strong>冻结</strong>。</li>
+                </ol>
+
+                <details>
+                  <summary>子管理员的决定如何展示给中心？</summary>
+                  <div class="hr"></div>
+                  <ul>
+                    <li class="muted"><code>verification_status</code> 与/或 <code>account_status</code> 的更新会在同步后立即体现。</li>
+                    <li class="muted">当发起<strong>重新上传请求</strong>时，中心会看到说明并可提交新文件。</li>
+                  </ul>
+                </details>
+
+                <div class="callout">
+                  <strong>专业建议</strong>
+                  <p class="muted" style="margin:0">
+                    原因写清楚（如“许可证不清晰/无法读取”“缺少文件”），可以减少来回沟通并加快处理速度。
+                  </p>
+                </div>
+              </div>
+            </details>
+
+            <details class="policy-sec" id="s12">
+              <summary><span class="title">12) 通知</span></summary>
+              <div class="sec-body">
+                <p>
+                  应用使用通知（Firebase + 本地通知）来推送：
+                  <strong>预约更新</strong>以及（视功能启用情况）会话安排/提醒。
+                </p>
+
+                <ol>
+                  <li>首次使用时可能会请求通知权限。</li>
+                  <li>如果你在系统里关闭了通知：
+                    <ul>
+                      <li>打开手机设置 &gt; 应用 &gt; Infinite Aura &gt; 通知，并重新启用。</li>
+                    </ul>
+                  </li>
+                </ol>
+
+                <details>
+                  <summary>从应用内直接打开通知设置</summary>
+                  <div class="hr"></div>
+                  <p class="muted">
+                    项目中包含从应用内部直接跳转到系统通知设置页面的逻辑（尤其在 Android 上）。
+                  </p>
+                </details>
+              </div>
+            </details>
+
+            <details class="policy-sec" id="s13">
+              <summary><span class="title">13) 常见问题与支持</span></summary>
+              <div class="sec-body">
+                <h3>常见问题</h3>
+                <ul>
+                  <li><strong>收不到 OTP：</strong>检查垃圾箱，只使用最新验证码，并确认邮箱正确。</li>
+                  <li><strong>监护人看不到预约：</strong>刷新页面，确认已登录，并等待同步完成。</li>
+                  <li><strong>地图链接无效：</strong>使用“使用当前位置”或粘贴有效的 http/https Google 地图链接。</li>
+                  <li><strong>没有通知：</strong>在系统设置中启用通知权限，然后重新打开应用。</li>
+                </ul>
+
+                <div class="callout">
+                  <strong>联系支持</strong>
+                  <p class="muted" style="margin:0">
+                    支持/隐私邮箱：<strong>app.asd.cure@gmail.com</strong><br/>
+                    （建议主题写清楚：Support / Booking / Account / Verification）
+                  </p>
+                </div>
+              </div>
+            </details>
+
+            <!-- ===================== END MANUAL SECTIONS ===================== -->
+
+          </div>
+        </article>
+      </main>
+    </div>
+
+    <div class="footer">
+      <strong>说明：</strong>
+      <p class="muted" style="margin-top:8px">
+        本手册根据项目中实际实现的流程编写
+        （注册/登录 OTP、中心目录 + 预约、中心预约管理、公开中心页面发布/隐藏、绩效、归档）。
+      </p>
+      <p class="muted" style="margin:0">
+        © <span id="year"></span> <strong>Infinite Aura</strong>. 保留所有权利。
+      </p>
+    </div>
+  </div>
+
+<script>
+  // Dynamic year
+  document.getElementById("year").textContent = new Date().getFullYear();
+
+  // Sections only
+  const policyDetails = Array.from(document.querySelectorAll("details.policy-sec"));
+
+  function toggleAll(open){
+    policyDetails.forEach(d => d.open = !!open);
+  }
+
+  // Accordion: opening one closes the others
+  let allowMultipleOpen = false;
+  policyDetails.forEach(d => {
+    d.addEventListener("toggle", () => {
+      if (!d.open) return;
+      if (allowMultipleOpen) return;
+      policyDetails.forEach(other => {
+        if (other !== d) other.open = false;
+      });
+    });
+  });
+
+  const _toggleAll = toggleAll;
+  toggleAll = function(open){
+    allowMultipleOpen = true;
+    _toggleAll(open);
+    setTimeout(() => { allowMultipleOpen = false; }, 0);
+  };
+
+  // Highlight active TOC link
+  const tocLinksDesktop = Array.from(document.querySelectorAll("#toc a"));
+  const tocLinksMobile = Array.from(document.querySelectorAll("#tocMobile a"));
+  const allLinks = [...tocLinksDesktop, ...tocLinksMobile];
+  const linkMap = new Map(allLinks.map(a => [a.getAttribute("href"), a]));
+
+  function setActive(id){
+    allLinks.forEach(a => a.classList.remove("active"));
+    const a = linkMap.get("#" + id);
+    if(a) a.classList.add("active");
+    tocLinksDesktop.forEach(x => { if(x.getAttribute("href")==="#" + id) x.classList.add("active"); });
+    tocLinksMobile.forEach(x => { if(x.getAttribute("href")==="#" + id) x.classList.add("active"); });
+  }
+
+  // If a TOC link is clicked: open the section before scrolling
+  allLinks.forEach(a => {
+    a.addEventListener("click", () => {
+      const href = a.getAttribute("href");
+      if(!href || !href.startsWith("#")) return;
+      const id = href.slice(1);
+      const target = document.getElementById(id);
+      if(target && target.matches("details.policy-sec")){
+        target.open = true;
+      }
+    });
+  });
+
+  const observer = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(!e.isIntersecting) return;
+      setActive(e.target.id);
+    });
+  }, { rootMargin: "-45% 0px -50% 0px", threshold: 0.01 });
+
+  policyDetails.forEach(d => observer.observe(d));
+
+  // Close mobile TOC after click
+  document.querySelectorAll("#tocMobile a").forEach(a=>{
+    a.addEventListener("click", ()=>{
+      const details = document.querySelector("details.tocMobile");
+      if(details) details.open = false;
+    });
+  });
+</script>
+
+</body>
+</html>
