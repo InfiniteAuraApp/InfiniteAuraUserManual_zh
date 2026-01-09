@@ -806,153 +806,170 @@
               </div>
             </details>
 
-            <details class="policy-sec" id="s5a">
-              <summary><span class="title">5-A) 创建新会话</span></summary>
-              <div class="sec-body">
-                <p>
-                  <strong>新会话</strong>是项目的核心评估页面。
-                  一次会话包含<strong>照片</strong>、<strong>问卷答案</strong>，以及（可选）<strong>治疗</strong>与<strong>活动</strong>。
-                  保存时会计算分数，并跳转到结果页面。
-                </p>
+<details class="policy-sec" id="s5a">
+  <summary><span class="title">5-A) 创建新会话</span></summary>
+  <div class="sec-body">
+    <p>
+      <strong>新会话</strong>界面用于在系统内创建评估会话。
+      结果基于三个部分：<strong>照片分析</strong>、<strong>问卷</strong>和<strong>活动</strong>。
+      执行分析后，会话将被保存并打开结果界面。
+    </p>
 
-                <p>
-                  <span class="badge"><i></i>照片分析</span>
-                  <span class="badge"><i></i>问卷</span>
-                  <span class="badge bad"><i></i>活动</span>
-                  <span class="badge ok"><i></i>分析并保存</span>
-                </p>
+    <p>
+      <span class="badge"><i></i>照片分析</span>
+      <span class="badge"><i></i>问卷</span>
+      <span class="badge"><i></i>活动</span>
+      <span class="badge ok"><i></i>分析后保存</span>
+    </p>
 
-                <div class="callout">
-                  <strong>如何进入此页面？</strong>
-                  <p class="muted" style="margin:0">
-                    在<strong>个体详情</strong>中点击<strong>开始新会话</strong>。
-                  </p>
-                </div>
+    <div class="callout">
+      <strong>如何进入该界面？</strong>
+        在个体详情界面选择开始新会话。
+      </p>
+    </div>
 
-                <h3>1) 添加会话照片（照片分析所需）</h3>
-                <ol>
-                  <li>点击<strong>拍摄照片</strong>。</li>
-                  <li>选择来源：<strong>相机</strong>或<strong>相册</strong>。</li>
-                  <li>选择后系统会对照片进行分析。</li>
-                </ol>
+    <h3>第一步：为会话添加照片（必填）</h3>
+    <ol>
+      <li>点击选择照片选项。</li>
+      <li>选择来源：<strong>相机</strong>或<strong>相册</strong>。</li>
+      <li>系统会检测照片中的人脸；如果未检测到人脸，必须选择其他照片或拍摄更清晰的照片。</li>
+    </ol>
 
-                <details>
-                  <summary>如果未检测到人脸怎么办？</summary>
-                  <div class="hr"></div>
-                  <p class="muted">
-                    如果图片中没有清晰的人脸，可能会提示“未检测到人脸”。
-                    请更换照片或拍摄更清晰的图片。
-                  </p>
-                </details>
+  <h3>第二步：选择照片上下文</h3>
+  <ol>
+    <li>照片上下文仅用于描述个体<strong>拍照当下</strong>的状态，而不是永久性的评估。</li>
+    <li>根据拍照时可见的行为选择<strong>一个值</strong>。</li>
+    <li>选项含义：
+      <ul>
+        <li><code>正常</code>：正常配合，没有明显恐惧或明显拒绝，即使面部表情较为普通。</li>
+        <li><code>害羞</code>：害羞或回避看向镜头，但整体仍较为配合。</li>
+        <li><code>恐惧</code>：拍照时有明显恐惧迹象，例如高度紧张、哭泣、强烈不适，或因害怕而试图远离。</li>
+        <li><code>不愿回应</code>：明显拒绝拍照或抵抗，例如把脸/手机移开、用手遮住脸，或不允许拍摄。</li>
+      </ul>
+    </li>
+    <li>如果状态不明确，请选择<code>正常</code>。</li>
+    <li>如果与照片分析结果冲突，应用可能会根据系统校验逻辑自动限制某些选项。</li>
+  </ol>
 
-                <h3>2) 填写问卷</h3>
-                <ol>
-                  <li>你会看到一系列问题。</li>
-                  <li>每个问题选择 1 到 5 的评分。</li>
-                  <li>尽量完成所有必填问题以获得更准确结果。</li>
-                </ol>
+  <h3>第三步：填写问卷</h3>
+    <ol>
+      <li>为问题选择1到5分的答案。</li>
+      <li><strong>基本要求：</strong>在执行分析前必须至少回答一个问题。</li>
+      <li>完成所有问题可获得更准确的结果。</li>
+    </ol>
 
-                <h3>3)（可选）为会话添加治疗</h3>
-                <ol>
-                  <li>打开<strong>治疗</strong>。</li>
-                  <li>开启某个治疗（开关）以纳入本次会话。</li>
-                  <li>每个治疗可填写：
-                    <ul>
-                      <li><strong>目标</strong></li>
-                      <li><strong>备注</strong></li>
-                      <li><strong>有效性</strong>（1–5）</li>
-                    </ul>
-                  </li>
-                </ol>
+    <h3>第四步：为会话添加活动（必填）</h3>
+  <ol>
+    <li>在<strong>活动</strong>部分至少选择一个活动。</li>
+    <li>为每个活动输入<strong>次数/天</strong>，需为<strong>1或以上</strong>。</li>
+    <li>可为活动添加可选备注。</li>
+    <li><strong>基本要求：</strong>若未选择至少一个活动且次数/天(≥ 1)，则无法执行分析。</li>
+  </ol>
 
-                <h3>4) 添加活动</h3>
-                <ol>
-                  <li>在<strong>活动</strong>中选择一个活动。</li>
-                  <li>设置：
-                    <ul>
-                      <li><strong>每日重复次数</strong></li>
-                      <li><strong>备注</strong>（可选）</li>
-                    </ul>
-                  </li>
-                  <li>点击<strong>添加活动</strong>将其加入列表。</li>
-                  <li>如需可移除某个活动。</li>
-                </ol>
+    <h3>第五步：执行分析</h3>
+  <ol>
+    <li>点击<strong>分析</strong>按钮。</li>
+    <li>将计算以下数值：
+      <ul>
+        <li><strong>照片得分</strong>（0–100）</li>
+        <li><strong>问卷得分</strong>（0–100）</li>
+        <li><strong>活动得分</strong>（0–100）</li>
+        <li><strong>总得分</strong>（0–100）
+        </li>
+      </ul>
+    </li>
+  </ol>
 
-                <h3>5) 保存并查看结果</h3>
-                <ol>
-                  <li>点击<strong>分析</strong>。</li>
-                  <li>会话保存并生成分数：
-                    <ul>
-                      <li><strong>照片分数</strong></li>
-                      <li><strong>问卷分数</strong></li>
-                      <li><strong>活动分数</strong></li>
-                      <li><strong>综合分数</strong></li>
-                    </ul>
-                  </li>
-                  <li>保存后自动跳转到<strong>会话结果</strong>。</li>
-                </ol>
+    <h3>第六步：（根据账户类型）为会话添加疗法</h3>
+  <ol>
+    <li><strong>疗法</strong>部分可能仅对系统内获授权的账户显示。</li>
+    <li>在会话中启用疗法时可填写：
+      <ul>
+        <li><strong>目标</strong>（可选）</li>
+        <li><strong>备注</strong>（可选）</li>
+        <li><strong>有效性</strong>（1–5）选择疗法时必填，用于说明其有效程度</li>
+      </ul>
+    </li>
+  </ol>
 
-                <div class="callout">
-                  <strong>安全提示（与项目相关）</strong>
-                  <p class="muted" style="margin:0">
-                    会话照片与问卷答案在项目中会对授权查看者进行加密/解密处理，
-                    因此打开结果时可能会有轻微的额外加载时间。
-                  </p>
-                </div>
-              </div>
-            </details>
+    <h3>最后：保存会话并打开结果</h3>
+  <ol>
+    <li>分析成功后点击<strong>保存</strong>。</li>
+    <li>会话将保存主要结果字段，此外还包括：</li>
+    <li>保存后会直接打开<strong>该个体的当前会话</strong>界面。</li>
+  </ol>
+  </div>
+</details>
 
-            <details class="policy-sec" id="s5b">
-              <summary><span class="title">5-B) 会话结果</span></summary>
-              <div class="sec-body">
-                <p>
-                  <strong>会话结果</strong>会展示保存后的会话详情：分数、（若有）会话照片、
-                  以及<strong>只读</strong>的问卷答案，同时还会展示该会话保存的治疗与活动。
-                </p>
+<details class="policy-sec" id="s5b"> 
+  <summary><span class="title">5-B) 会话结果</span></summary>
+  <div class="sec-body">
+    <p>
+      <strong>会话结果</strong>界面在保存后显示会话详情：得分、照片数据（如有），
+      以及问卷答案，另外还有活动（并且疗法可能会根据会话内添加情况显示）。
+      此处数据仅用于展示，不会在结果界面修改已保存会话的结果。
+    </p>
 
-                <p>
-                  <span class="badge"><i></i>结果</span>
-                  <span class="badge"><i></i>会话照片</span>
-                  <span class="badge warn"><i></i>问卷答案</span>
-                  <span class="badge ok"><i></i>治疗 &amp; 活动</span>
-                </p>
+    <p>
+      <span class="badge"><i></i>总得分</span>
+      <span class="badge"><i></i>得分详情</span>
+      <span class="badge"><i></i>问卷</span>
+      <span class="badge"><i></i>活动</span>
+    </p>
 
-                <h3>如何打开结果？</h3>
-                <ol>
-                  <li>进入<strong>个体详情</strong>。</li>
-                  <li>在会话列表中点击某次会话。</li>
-                  <li>打开<strong>会话结果</strong>页面。</li>
-                </ol>
+    <h3>如何打开会话结果？</h3>
+    <ol>
+      <li>打开<strong>个体详情</strong>。</li>
+      <li>在<strong>会话</strong>列表中选择所需会话。</li>
+      <li>打开<strong>会话结果</strong>界面。</li>
+    </ol>
 
-                <h3>你会看到什么？</h3>
-                <ol>
-                  <li><strong>顶部</strong>：会话日期/时间与简要信息。</li>
-                  <li><strong>分数</strong>：照片 / 问卷 / 活动 / 综合（0–100）。</li>
-                  <li><strong>会话照片</strong>（如保存）：授权用户会在加载并解密后显示。</li>
-                  <li><strong>问卷答案</strong>：按题目展示（1–5），并带锁图标<strong>🔒</strong>（只读）。</li>
-                  <li><strong>治疗</strong>：目标、备注、有效性。</li>
-                  <li><strong>活动</strong>：每日次数与备注（若有）。</li>
-                </ol>
+    <h3>结果中显示的内容</h3>
+    <ol>
+      <li><strong>会话摘要</strong>：日期时间与简要摘要。</li>
+      <li><strong>得分</strong>（0–100）：
+        <ul>
+          <li><strong>照片得分</strong></li>
+          <li><strong>问卷得分</strong></li>
+          <li><strong>活动得分</strong></li>
+          <li><strong>总得分</strong>并显示系统内使用的权重（照片分析 0.35，问卷 0.35，活动 0.30）。</li>
+        </ul>
+      </li>
+      <li><strong>活动</strong>：
+        <ul>
+          <li>显示添加到会话的活动列表。</li>
+          <li>在可用时显示活动数量与总次数。</li>
+        </ul>
+      </li>
+      <li><strong>问卷</strong>：
+        <ul>
+          <li>仅展示问卷答案（1–5）。</li>
+        </ul>
+      </li>
+      <li><strong>疗法</strong>（如在会话中添加）：
+        <ul>
+          <li>若已添加，则显示疗法条目及其目标、备注与有效性。</li>
+        </ul>
+      </li>
+    </ol>
 
-                <details>
-                  <summary>为什么有时看不到会话照片？</summary>
-                  <div class="hr"></div>
-                  <ul>
-                    <li class="muted">该会话可能未保存照片。</li>
-                    <li class="muted">加载/解密可能需要一点时间。</li>
-                    <li class="muted">当前账户可能没有权限/密钥查看（取决于共享逻辑）。</li>
-                  </ul>
-                </details>
+    <details>
+      <summary>什么时候可能不会显示会话照片？</summary>
+      <div class="hr"></div>
+      <ul>
+        <li class="muted">会话可能在没有可显示照片的情况下被保存。</li>
+        <li class="muted">根据系统的保护机制，照片加载/解码可能会有延迟。</li>
+        <li class="muted">根据共享与权限逻辑，当前账户可能没有查看内容的权限。</li>
+      </ul>
+    </details>
 
-                <div class="callout">
-                  <strong>结果与其它页面的关联</strong>
-                  <p class="muted" style="margin:0">
-                    会话结果通过<strong>个体详情</strong>（会话列表）直接打开，
-                    并可在启用时用于<strong>状态</strong>汇总与绩效统计分析。
-                  </p>
-                </div>
-              </div>
-            </details>
+    <div class="callout">
+      结果与其他界面的关联
+        会话结果与个体详情中的会话列表关联，并会根据账户权限纳入性能计算与报告。
+    </div>
+  </div>
+</details>
+
 
             <details class="policy-sec" id="s5c">
               <summary><span class="title">5-C) 监护人：中心目录与发送预约请求</span></summary>
@@ -1583,3 +1600,4 @@
 
 </body>
 </html>
+
